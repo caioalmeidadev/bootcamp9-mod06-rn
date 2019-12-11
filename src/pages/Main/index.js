@@ -13,12 +13,13 @@ import {
   User,
   ProfileButton,
   ProfileButtonText,
-  Bio
+  Bio,
 } from './styles';
 
 import api from '../../services/api';
 
 export default class Main extends React.Component {
+  // eslint-disable-next-line react/state-in-constructor
   state = {
     newUser: '',
     users: [],
@@ -63,10 +64,10 @@ export default class Main extends React.Component {
     Keyboard.dismiss();
   };
 
-  handleNavigate = (user) => {
-    const {navigation} = this.props;
-    navigation.navigate('User',{user});
-  }
+  handleNavigate = user => {
+    const { navigation } = this.props;
+    navigation.navigate('User', { user });
+  };
 
   render() {
     const { users, newUser, loading } = this.state;
@@ -82,7 +83,10 @@ export default class Main extends React.Component {
             returnKeyType="send"
             onSubmitEditing={this.handleAddUser}
           />
-          <SubmitButton loading={loading} onPress={() => this.handleAddUser(item)}>
+          <SubmitButton
+            loading={loading}
+            onPress={() => this.handleAddUser(item)}
+          >
             {loading ? (
               <ActivityIndicator color="#FFF" />
             ) : (
